@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopify</title>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="product-page">
+            <div class="product-images">
+
+                <div class="product-image-section">
+                    <img id="main-image" src="assets/images/photo-1467043237213-65f2da53396f.avif" alt="Main Product" class="main-product-image">
+                  
+                    <div class="product-thumbnails">
+                      <img src="assets/images/photo-1467043237213-65f2da53396f.avif" alt="Thumbnail 1"
+                        onclick="changeImage('assets/images/photo-1467043237213-65f2da53396f.avif')">
+                      <img src="assets/images/photo-1516762689617-e1cffcef479d.avif" alt="Thumbnail 2"
+                        onclick="changeImage('assets/images/photo-1516762689617-e1cffcef479d.avif')">
+                      <img src="assets/images/photo-1564584217132-2271feaeb3c5.avif" alt="Thumbnail 3"
+                        onclick="changeImage('assets/images/photo-1564584217132-2271feaeb3c5.avif')">
+                      <img src="assets/images/photo-1591047139829-d91aecb6caea.avif" alt="Thumbnail 4"
+                        onclick="changeImage('assets/images/photo-1591047139829-d91aecb6caea.avif')">
+                      <img src="assets/images/photo-1611312449412-6cefac5dc3e4.avif" alt="Thumbnail 5"
+                        onclick="changeImage('assets/images/photo-1611312449412-6cefac5dc3e4.avif')">
+                      <img src="assets/images/photo-1620799140188-3b2a02fd9a77.avif" alt="Thumbnail 6"
+                        onclick="changeImage('assets/images/photo-1620799140188-3b2a02fd9a77.avif')">
+                    </div>
+                  </div>
+                  
+
+            <div class="product-info">
+                <h1>Premium Cotton T-Shirt</h1>
+                <p class="price">₹999.00</p>
+
+                <div class="colors">
+                    <p><strong>Color:</strong></p>
+                    <button onclick="selectColor('Black')" class="color-btn"
+                        style="background-color: black;">Black</button>
+                    <button onclick="selectColor('White')" class="color-btn" style="background-color: red;">Red</button>
+                    <button onclick="selectColor('Navy')" class="color-btn"
+                        style="background-color: navy; color: white;">Navy</button>
+                </div>
+
+                <div class="sizes">
+                    <p><strong>Size:</strong></p>
+                    <button onclick="selectSize('S')">S</button>
+                    <button onclick="selectSize('M')" class="selected">M</button>
+                    <button onclick="selectSize('L')">L</button>
+                    <button onclick="selectSize('XL')">XL</button>
+                    <button id="sizeChartBtn" class="size-chart-btn">Size Chart</button>
+                </div>
+
+                <div id="selectedState" class="selected-state">
+                    Selected: <span id="selectedColor">Red</span>, <span id="selectedSize">M</span>
+                  </div>
+
+                <!-- Size Chart Modal -->
+                <div id="sizeChartModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="sizeChartTitle">
+                    <div class="modal-content">
+                        <button class="close" aria-label="Close Size Chart">&times;</button>
+                        <h2 id="sizeChartTitle">Size Chart</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Chest</th>
+                                    <th>Waist</th>
+                                    <th>Length</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>S</td>
+                                    <td>34"</td>
+                                    <td>28"</td>
+                                    <td>25"</td>
+                                </tr>
+                                <tr>
+                                    <td>M</td>
+                                    <td>36"</td>
+                                    <td>30"</td>
+                                    <td>26"</td>
+                                </tr>
+                                <tr>
+                                    <td>L</td>
+                                    <td>38"</td>
+                                    <td>32"</td>
+                                    <td>27"</td>
+                                </tr>
+                                <tr>
+                                    <td>XL</td>
+                                    <td>40"</td>
+                                    <td>34"</td>
+                                    <td>28"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+
+        <div class="colors">
+            <p><strong>Color:</strong></p>
+            <button class="color-btn" style="background-color: black;" data-color="Black"></button>
+            <button class="color-btn" style="background-color: red;" data-color="Red"></button>
+            <button class="color-btn" style="background-color: navy;" data-color="Navy"></button>
+          </div>
+          
+          <button id="compareColorsBtn" class="compare-btn">Compare Colours</button>
+          
+          <!-- Compare Modal -->
+          <div id="compareModal" class="modal">
+            <div class="modal-content">
+              <span class="close" role="button" aria-label="Close">&times;</span>
+              <h2>Compare Colours</h2>
+              <div id="compareSwatches" class="compare-swatches"></div>
+            </div>
+          </div>
+
+          <section class="pair-well-with">
+            <h2>Pair Well With</h2>
+            <div class="carousel-container">
+              <button class="carousel-btn left" onclick="scrollCarousel(-1)">&#10094;</button>
+              
+              <div class="product-carousel" id="pairCarousel">
+                <div class="product-card" data-product="Classic Sunglasses">
+                  <img src="assets/images/pair1.avif" alt="Product 1" />
+                  <h4>Classic Sunglasses</h4>
+                  <p>$29.99</p>
+                  <button onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-product="Leather Wallet">
+                  <img src="assets/images/pair2.avif" alt="Product 2" />
+                  <h4>Leather Wallet</h4>
+                  <p>$49.99</p>
+                  <button onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-product="Canvas Belt">
+                  <img src="assets/images/pair3.avif" alt="Product 3" />
+                  <h4>Canvas Belt</h4>
+                  <p>$19.99</p>
+                  <button onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <div class="product-card" data-product="Canvas Belt">
+                  <img src="assets/images/pair3.avif" alt="Product 4" />
+                  <h4>Blue Tshirt</h4>
+                  <p>$9.99</p>
+                  <button onclick="addToCart(this)">Add to Cart</button>
+                </div>
+                <div class="recommendation-card">
+                    <img src="assets/images/pair3.avif" alt="Belt">
+                    <div class="card-details">
+                      <h4>Urban Canvas Belt</h4>
+                      <p class="brand">UrbanEdge</p>
+                      <p class="price">$19.99</p>
+                      <button>Add to Cart</button>
+                    </div>
+                  </div>
+                <!-- Add more product-cards if needed -->
+              </div>
+          
+              <button class="carousel-btn right" onclick="scrollCarousel(1)">&#10095;</button>
+            </div>
+          </section>
+          
+          
+          <section class="product-bundle">
+            <h2>Buy These Together</h2>
+            <div class="bundle-items">
+              <div class="bundle-product">
+                <img src="assets/images/photo-1467043237213-65f2da53396f.avif" alt="Main Product">
+                <p>Pant + Shirt</p>
+                <p>$39.99</p>
+              </div>
+              <span class="plus">+</span>
+              <div class="bundle-product">
+                <img src="assets/images/photo-1516762689617-e1cffcef479d.avif" alt="Wallet">
+                <p>Pant + Shoes</p>
+                <p>$49.99</p>
+              </div>
+              <span class="plus">+</span>
+              <div class="bundle-product">
+                <img src="assets/images/photo-1564584217132-2271feaeb3c5.avif" alt="Belt">
+                <p>T-shirt</p>
+                <p>$19.99</p>
+              </div>
+            </div>
+          
+            <div class="bundle-total">
+              <p><strong>Total: $109.97</strong></p>
+              <button onclick="addBundleToCart()">Add Bundle to Cart</button>
+            </div>
+          </section>
+                    
+
+
+          <section class="product-tabs">
+            <div class="tabs">
+              <button class="tab active" onclick="showTab('description')">Description</button>
+              <button class="tab" onclick="showTab('product-info')">Product Information</button>
+              <button class="tab" onclick="showTab('shipping')">Shipping Details</button>
+            </div>
+          
+            <div class="tab-content" id="description">
+              <h3>Description</h3>
+              <p>This is a high-quality product made with care and attention to detail. Perfect for daily wear and long-lasting comfort.</p>
+            </div>
+          
+            <div class="tab-content" id="product-info" style="display: none;">
+              <h3>Product Information</h3>
+              <ul>
+                <li>Material: 100% Cotton</li>
+                <li>Fit: Regular</li>
+                <li>Made in: India</li>
+              </ul>
+            </div>
+          
+            <div class="tab-content" id="shipping" style="display: none;">
+              <h3>Shipping Details</h3>
+              <p>Standard delivery in 3–5 business days. Free shipping on orders over ₹999. Easy 7-day returns.</p>
+            </div>
+          </section>
+          
+
+          <section class="related-products">
+            <h2>Related Products</h2>
+            <div class="related-grid">
+              <div class="product-card">
+                <span class="badge">New</span>
+                <img src="assets/images/photo-1467043237213-65f2da53396f.avif" alt="Product 1">
+                <h4>Stylish Shirt</h4>
+                <p>₹899</p>
+              </div>
+          
+              <div class="product-card">
+                <span class="badge">Popular</span>
+                <img src="assets/images/photo-1564584217132-2271feaeb3c5.avif" alt="Product 2">
+                <h4>Casual Denim</h4>
+                <p>₹1299</p>
+              </div>
+          
+              <div class="product-card">
+                <img src="assets/images/photo-1620799140408-edc6dcb6d633.avif" alt="Product 3">
+                <h4>Basic T-Shirt</h4>
+                <p>₹499</p>
+              </div>
+          
+              <div class="product-card">
+                <img src="assets/images/photo-1620799140188-3b2a02fd9a77.avif" alt="Product 4">
+                <h4>Comfy Hoodie</h4>
+                <p>₹1499</p>
+              </div>
+            </div>
+          </section>
+          
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

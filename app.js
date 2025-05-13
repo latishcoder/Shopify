@@ -49,10 +49,19 @@ function selectColor(color) {
 
    // app.js
 
-function changeImage(imageUrl) {
+   function changeImage(thumbnail) {
     const mainImage = document.getElementById('main-image');
-    mainImage.src = imageUrl;
+    mainImage.src = thumbnail.src;
+  
+    // Match the main image size to thumbnail
+    mainImage.style.width = thumbnail.naturalWidth + "px";
+    mainImage.style.height = thumbnail.naturalHeight + "px";
+  
+    // Highlight selected thumbnail
+    document.querySelectorAll('.product-thumbnails img').forEach(img => img.classList.remove('selected'));
+    thumbnail.classList.add('selected');
   }
+  
   
 
   const colorButtons = document.querySelectorAll('.color-btn');
